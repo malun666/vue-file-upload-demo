@@ -1,7 +1,13 @@
 <template>
   <div class="about">
     <input type="button" class="btn" value="上传文件" @click="upload" />
-    <input type="file" name="imgF" ref="fileInput" @change="fileSelect" />
+    <input
+      type="file"
+      accept="image/*"
+      name="imgF"
+      ref="fileInput"
+      @change="fileSelect"
+    />
     <hr />
     <ul>
       <li v-for="item in imgList" :key="item.url">
@@ -34,9 +40,13 @@ export default {
         headers: {
           "Content-Type": "multipart/form-data "
         }
-      }).then(res => {
-        this.imgList.push({ url: "http://n.hamkd.com" + res.data.img });
-      });
+      })
+        .then(res => {
+          this.imgList.push({ url: "http://n.hamkd.com" + res.data.img });
+        })
+        .catch(() => {
+          alert("上传失败！");
+        });
     }
   }
 };

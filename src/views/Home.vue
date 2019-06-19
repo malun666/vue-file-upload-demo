@@ -6,6 +6,10 @@
       文件上传案例：
       <router-link to="/about">跳转到文件上传案例页面</router-link>
     </div>
+    <div>
+      文件上传案例：
+      <router-link to="/mupload">跳转到移动端压缩文件上传案例页面</router-link>
+    </div>
   </div>
 </template>
 
