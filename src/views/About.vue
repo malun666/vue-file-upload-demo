@@ -1,0 +1,56 @@
+<template>
+  <div class="about">
+    <input type="button" class="btn" value="上传文件" @click="upload" />
+    <input type="file" name="imgF" ref="fileInput" @change="fileSelect" />
+    <hr />
+    <ul>
+      <li v-for="item in imgList" :key="item.url">
+        <img :src="item.url" alt="" />
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+export default {
+  name: "about",
+  data() {
+    return {
+      imgList: []
+    };
+  },
+  methods: {
+    upload() {
+      this.$refs.fileInput.click();
+    },
+    fileSelect(e) {
+      let formdata = new FormData();
+      formdata.append("imgF", e.target.files[0]);
+      axios({
+        url: "http://n.hamkd.com/api/upload",
+        data: formdata,
+        method: "post",
+        headers: {
+          "Content-Type": "multipart/form-data "
+        }
+      }).then(res => {
+        this.imgList.push({ url: "http://n.hamkd.com" + res.data.img });
+      });
+    }
+  }
+};
+</script>
+
+<style scoped>
+.about .btn {
+  background-color: #ff7745;
+  color: #fff;
+  height: 40px;
+  width: 100px;
+  text-align: center;
+  font-size: 20px;
+  line-height: 40px;
+  border-radius: 5px;
+}
+</style>
