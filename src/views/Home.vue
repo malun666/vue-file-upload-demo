@@ -1,18 +1,16 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <p @click="updateName">{{ userName }}</p>
-
-    <p @click="addPropStr(22222)">{{ getUserName }}</p>
-
-    <div>{{ $t("msg.h") }}</div>
+    AICODER官网： <a href="https://www.aicoder.com">https://www.aicoder.com</a>
+    <hr />
+    <div>
+      文件上传案例：
+      <router-link to="/about">跳转到文件上传案例页面</router-link>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-
-import { mapState, mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "home",
@@ -21,20 +19,7 @@ export default {
       userName: ""
     };
   },
-  mounted() {
-    this.userName = this.$store.state.user.name;
-  },
-  methods: {
-    updateName() {
-      this.$store.commit("updateUserName", Date.now());
-      // this.updateUserName(Date.now());
-    },
-    ...mapMutations(["updateUserName", "addPropStr"])
-  },
-  computed: {
-    ...mapState(["user"]),
-    ...mapGetters(["getUserName"])
-  },
-  components: {}
+  mounted() {},
+  methods: {}
 };
 </script>
