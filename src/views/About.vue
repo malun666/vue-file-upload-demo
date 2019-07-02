@@ -34,7 +34,7 @@ export default {
       let formdata = new FormData();
       formdata.append("imgF", e.target.files[0]);
       axios({
-        url: "http://n.hamkd.com/api/upload",
+        url: "http://localhost:8888/api/upload",
         data: formdata,
         method: "post",
         headers: {
@@ -42,7 +42,9 @@ export default {
         }
       })
         .then(res => {
-          this.imgList.push({ url: "http://n.hamkd.com" + res.data.img });
+          this.imgList.push({
+            url: "http://localhost:8888" + res.data.img
+          });
         })
         .catch(() => {
           alert("上传失败！");

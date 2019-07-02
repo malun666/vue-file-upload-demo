@@ -15,6 +15,8 @@
 
 <script>
 // @ is an alias to /src
+import api, { default as df } from "../service/api.js";
+console.log(df);
 
 export default {
   name: "home",
@@ -22,6 +24,23 @@ export default {
     return {
       userName: ""
     };
+  },
+  // async created() {
+  //   let userList = await api.getUser();
+  //   console.log(userList);
+  //   let roleList = await api.getRole();
+  //   console.log(roleList);
+  // },
+  created() {
+    // 两个请求都成功之后，提示成功。有一个败了，都败了。
+    Promise.all([api.getUser(), api.getRole()])
+      .then(res => {
+        console.log("ok");
+        console.log(res);
+      })
+      .catch(e => {
+        console.log("baile");
+      });
   },
   mounted() {},
   methods: {}
