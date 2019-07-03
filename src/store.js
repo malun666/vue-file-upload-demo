@@ -2,13 +2,16 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 Vue.use(Vuex);
+let k = JSON.parse(sessionStorage.getItem(vuex));
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
+    k,
     user: {
       id: 1,
-      name: "laoma"
-    }
+      name: sessionStorage.getItem("name") || ""
+    },
+    Str: 124
   },
   getters: {
     getUserName(state) {
@@ -31,3 +34,8 @@ export default new Vuex.Store({
     }
   }
 });
+
+store.subscribe((mutation, state) => {
+  console.log(mutation, state);
+});
+export default store;

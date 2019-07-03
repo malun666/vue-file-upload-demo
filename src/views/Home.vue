@@ -2,6 +2,12 @@
   <div class="home">
     AICODER官网： <a href="https://www.aicoder.com">https://www.aicoder.com</a>
     <hr />
+    <div v-html="msg"></div>
+    <div>{{ msg }}</div>
+    <div>{{ getLowerCaseMsg }}</div>
+    <input type="text" v-model="msg" />
+    <div class="demo" :class="{ act: true }">{{ msg | lowerCase }}</div>
+    <hr />
     <div>
       文件上传案例：
       <router-link to="/about">跳转到文件上传案例页面</router-link>
@@ -16,14 +22,22 @@
 <script>
 // @ is an alias to /src
 import api, { default as df } from "../service/api.js";
-console.log(df);
-
 export default {
   name: "home",
-  data() {
+  data: function() {
     return {
-      userName: ""
+      msg: "ss"
     };
+  },
+  filters: {
+    lowerCase(value) {
+      return value.toLowerCase();
+    }
+  },
+  computed: {
+    getLowerCaseMsg() {
+      return this.msg.toLowerCase();
+    }
   },
   // async created() {
   //   let userList = await api.getUser();
@@ -41,6 +55,7 @@ export default {
       .catch(e => {
         console.log("baile");
       });
+    this.$store.commit("addPropStr", Date.now());
   },
   mounted() {},
   methods: {}

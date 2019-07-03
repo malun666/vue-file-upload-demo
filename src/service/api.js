@@ -8,11 +8,3 @@ export default {
     return axios.get("http://192.168.1.130:8888/per/role");
   }
 };
-
-export function Show() {
-  console.log("show");
-}
-
-export let k = {
-  kk: 123
-};

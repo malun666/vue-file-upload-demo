@@ -26,6 +26,9 @@ export default {
       imgList: []
     };
   },
+  created() {
+    console.log(this.$route.query);
+  },
   methods: {
     upload() {
       this.$refs.fileInput.click();

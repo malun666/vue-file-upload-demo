@@ -5,7 +5,8 @@ import MUpload from "./views/MUpload.vue";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
+  mode: "hash",
   routes: [
     {
       path: "/",
@@ -15,6 +16,9 @@ export default new Router({
     {
       path: "/mupload",
       name: "mupload",
+      meta: {
+        id: 333
+      },
       component: MUpload
     },
     {
@@ -28,3 +32,10 @@ export default new Router({
     }
   ]
 });
+router.beforeEach((to, from, next) => {
+  console.log(to);
+  console.log(from);
+  next();
+});
+
+export default router;
