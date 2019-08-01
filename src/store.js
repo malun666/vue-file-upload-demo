@@ -2,11 +2,10 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 Vue.use(Vuex);
-let k = JSON.parse(sessionStorage.getItem(vuex));
+// let k = JSON.parse(sessionStorage.getItem(vuex));
 
 const store = new Vuex.Store({
   state: {
-    k,
     user: {
       id: 1,
       name: sessionStorage.getItem("name") || ""
